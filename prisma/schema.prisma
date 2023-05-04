@@ -10,11 +10,6 @@ datasource db {
   url      = env("MONGO_URL")
 }
 
-type commandUse {
-  timestamp DateTime @db.Date
-  uses      Int      @default(0)
-}
-
 type automodSubcommandGroups {
   set   automodSubcommands
   reset automodSubcommands
@@ -46,171 +41,171 @@ type welcomeSubcommandGroups {
 }
 
 type automodSubcommands {
-  automod_channels    commandUse
-  no_automod_channels commandUse
-  automod_roles       commandUse
-  allowed_links       commandUse
-  link_message        commandUse
-  profanity_message   commandUse
-  antiphish           commandUse
-  links               commandUse
-  profanity           commandUse
+  automod_channels    Int @default(0)
+  no_automod_channels Int @default(0)
+  automod_roles       Int @default(0)
+  allowed_links       Int @default(0)
+  link_message        Int @default(0)
+  profanity_message   Int @default(0)
+  antiphish           Int @default(0)
+  links               Int @default(0)
+  profanity           Int @default(0)
 }
 
 type beccaSubcommands {
-  ping        commandUse
-  help        commandUse
-  about       commandUse
-  invite      commandUse
-  art         commandUse
-  donate      commandUse
-  uptime      commandUse
-  profile     commandUse
-  updates     commandUse
-  stats       commandUse
-  emote       commandUse
-  adventure   commandUse
-  privacy     commandUse
-  contact     commandUse
-  translators commandUse
-  feedback    commandUse
+  ping        Int @default(0)
+  help        Int @default(0)
+  about       Int @default(0)
+  invite      Int @default(0)
+  art         Int @default(0)
+  donate      Int @default(0)
+  uptime      Int @default(0)
+  profile     Int @default(0)
+  updates     Int @default(0)
+  stats       Int @default(0)
+  emote       Int @default(0)
+  adventure   Int @default(0)
+  privacy     Int @default(0)
+  contact     Int @default(0)
+  translators Int @default(0)
+  feedback    Int @default(0)
 }
 
 type codeSubcommands {
-  caniuse commandUse
-  colour  commandUse
-  http    commandUse
+  caniuse Int @default(0)
+  colour  Int @default(0)
+  http    Int @default(0)
 }
 
 type communitySubcommands {
-  level      commandUse
-  motivation commandUse
-  schedule   commandUse
-  star       commandUse
-  starcount  commandUse
-  topic      commandUse
-  userinfo   commandUse
-  server     commandUse
-  suggest    commandUse
-  poll       commandUse
-  ticket     commandUse
+  level      Int @default(0)
+  motivation Int @default(0)
+  schedule   Int @default(0)
+  star       Int @default(0)
+  starcount  Int @default(0)
+  topic      Int @default(0)
+  userinfo   Int @default(0)
+  server     Int @default(0)
+  suggest    Int @default(0)
+  poll       Int @default(0)
+  ticket     Int @default(0)
 }
 
 type configSubcommands {
-  suggestion_channel  commandUse
-  hearts              commandUse
-  blocked             commandUse
-  appeal_link         commandUse
-  sass_mode           commandUse
-  emote_channels      commandUse
-  report_channel      commandUse
-  ticket_category     commandUse
-  ticket_log_channel  commandUse
-  ticket_role         commandUse
-  starboard_emote     commandUse
-  starboard_channel   commandUse
-  starboard_threshold commandUse
+  suggestion_channel  Int @default(0)
+  hearts              Int @default(0)
+  blocked             Int @default(0)
+  appeal_link         Int @default(0)
+  sass_mode           Int @default(0)
+  emote_channels      Int @default(0)
+  report_channel      Int @default(0)
+  ticket_category     Int @default(0)
+  ticket_log_channel  Int @default(0)
+  ticket_role         Int @default(0)
+  starboard_emote     Int @default(0)
+  starboard_channel   Int @default(0)
+  starboard_threshold Int @default(0)
 }
 
 type currencySubcommands {
-  daily  commandUse
-  weekly commandUse
-  claim  commandUse
-  about  commandUse
-  slots  commandUse
-  21     commandUse
-  guess  commandUse
+  daily  Int @default(0)
+  weekly Int @default(0)
+  claim  Int @default(0)
+  about  Int @default(0)
+  slots  Int @default(0)
+  21     Int @default(0)
+  guess  Int @default(0)
 }
 
 type emoteSubcommands {
-  use  commandUse
-  view commandUse
+  use  Int @default(0)
+  view Int @default(0)
 }
 
 type gamesSubcommands {
-  fact   commandUse
-  mtg    commandUse
-  sus    commandUse
-  trivia commandUse
-  slime  commandUse
+  fact   Int @default(0)
+  mtg    Int @default(0)
+  sus    Int @default(0)
+  trivia Int @default(0)
+  slime  Int @default(0)
 }
 
 type levelsSubcommands {
-  toggle        commandUse
-  level_channel commandUse
-  level_roles   commandUse
-  level_style   commandUse
-  level_message commandUse
-  role_message  commandUse
-  initial_xp    commandUse
-  level_ignore  commandUse
-  level_decay   commandUse
+  toggle        Int @default(0)
+  level_channel Int @default(0)
+  level_roles   Int @default(0)
+  level_style   Int @default(0)
+  level_message Int @default(0)
+  role_message  Int @default(0)
+  initial_xp    Int @default(0)
+  level_ignore  Int @default(0)
+  level_decay   Int @default(0)
 }
 
 type logSubcommands {
-  message_events    commandUse
-  voice_events      commandUse
-  thread_events     commandUse
-  member_events     commandUse
-  moderation_events commandUse
+  message_events    Int @default(0)
+  voice_events      Int @default(0)
+  thread_events     Int @default(0)
+  member_events     Int @default(0)
+  moderation_events Int @default(0)
 }
 
 type manageSubcommands {
-  resetlevels commandUse
-  resetstars  commandUse
-  suggestion  commandUse
-  xpmodify    commandUse
+  resetlevels Int @default(0)
+  resetstars  Int @default(0)
+  suggestion  Int @default(0)
+  xpmodify    Int @default(0)
 }
 
 type miscSubcommands {
-  space       commandUse
-  username    commandUse
-  xkcd        commandUse
-  permissions commandUse
-  levelscale  commandUse
-  language    commandUse
+  space       Int @default(0)
+  username    Int @default(0)
+  xkcd        Int @default(0)
+  permissions Int @default(0)
+  levelscale  Int @default(0)
+  language    Int @default(0)
 }
 
 type modSubcommnands {
-  warn    commandUse
-  mute    commandUse
-  unmute  commandUse
-  kick    commandUse
-  ban     commandUse
-  history commandUse
-  unban   commandUse
+  warn    Int @default(0)
+  mute    Int @default(0)
+  unmute  Int @default(0)
+  kick    Int @default(0)
+  ban     Int @default(0)
+  history Int @default(0)
+  unban   Int @default(0)
 }
 
 type postSubcommands {
-  create commandUse
-  edit   commandUse
-  delete commandUse
+  create Int @default(0)
+  edit   Int @default(0)
+  delete Int @default(0)
 }
 
 type reactionRoleSubcommands {
-  create commandUse
-  add    commandUse
-  remove commandUse
+  create Int @default(0)
+  add    Int @default(0)
+  remove Int @default(0)
 }
 
 type triggersSubcommands {
-  add    commandUse
-  remove commandUse
-  view   commandUse
+  add    Int @default(0)
+  remove Int @default(0)
+  view   Int @default(0)
 }
 
 type userconfigSubcommands {
-  view      commandUse
-  levelcard commandUse
+  view      Int @default(0)
+  levelcard Int @default(0)
 }
 
 type welcomeSubcommands {
-  welcome_channel commandUse
-  depart_channel  commandUse
-  custom_welcome  commandUse
-  leave_message   commandUse
-  join_role       commandUse
-  welcome_style   commandUse
+  welcome_channel Int @default(0)
+  depart_channel  Int @default(0)
+  custom_welcome  Int @default(0)
+  leave_message   Int @default(0)
+  join_role       Int @default(0)
+  welcome_style   Int @default(0)
 }
 
 model commands {
@@ -229,11 +224,12 @@ model commands {
   manage       manageSubcommands
   misc         miscSubcommands
   mod          modSubcommnands
-  optout       commandUse
+  optout       Int                     @default(0)
   post         postSubcommands
   reactionRole reactionRoleSubcommands
   triggers     triggersSubcommands
   userconfig   userconfigSubcommands
+  welcome      welcomeSubcommandGroups
 
   @@unique([timestamp], map: "timestamp_1")
 }
