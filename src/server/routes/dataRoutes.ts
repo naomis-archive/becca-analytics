@@ -19,6 +19,12 @@ export const guildRoute = async (
   app.post(
     "/guilds",
     (req: FastifyRequest<{ Body: { count: number } }>, res) => {
+      if (req.headers.authorization !== process.env.ENDPOINT_AUTH) {
+        res.status(401).send({
+          message: "Unauthorized.",
+        });
+        return;
+      }
       const { count } = req.body;
 
       if (!count) {
@@ -44,6 +50,12 @@ export const memberRoute = async (
   app.post(
     "/members",
     (req: FastifyRequest<{ Body: { count: number } }>, res) => {
+      if (req.headers.authorization !== process.env.ENDPOINT_AUTH) {
+        res.status(401).send({
+          message: "Unauthorized.",
+        });
+        return;
+      }
       const { count } = req.body;
 
       if (!count) {
@@ -69,6 +81,12 @@ export const errorRoute = async (
   app.post(
     "/errors",
     (req: FastifyRequest<{ Body: { handled: boolean } }>, res) => {
+      if (req.headers.authorization !== process.env.ENDPOINT_AUTH) {
+        res.status(401).send({
+          message: "Unauthorized.",
+        });
+        return;
+      }
       const { handled } = req.body;
 
       if (!("handled" in req.body)) {
@@ -94,6 +112,12 @@ export const eventRoute = async (
   app.post(
     "/events",
     (req: FastifyRequest<{ Body: { event: string } }>, res) => {
+      if (req.headers.authorization !== process.env.ENDPOINT_AUTH) {
+        res.status(401).send({
+          message: "Unauthorized.",
+        });
+        return;
+      }
       const { event } = req.body;
 
       if (!event) {
@@ -135,6 +159,12 @@ export const commandRoute = async (
       }>,
       res
     ) => {
+      if (req.headers.authorization !== process.env.ENDPOINT_AUTH) {
+        res.status(401).send({
+          message: "Unauthorized.",
+        });
+        return;
+      }
       const { command, subcommand, subcommandGroup } = req.body;
 
       if (!command) {
