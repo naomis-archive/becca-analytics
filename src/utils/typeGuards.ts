@@ -1,6 +1,7 @@
 import { commands } from "@prisma/client";
 import {
   Command,
+  CommandWithNothing,
   CommandWithSubcommandGroups,
   CommandWithSubcommands,
   Event,
@@ -15,6 +16,15 @@ export const isEventType = (event: string): event is Event => {
 
 export const isValidCommand = (command: string): command is Command => {
   return Object.keys(DefaultCommand).includes(command);
+};
+
+export const isValidCommandWithNothing = (
+  command: string
+): command is CommandWithNothing => {
+  const obj: { [key in CommandWithNothing]: string } = {
+    optout: "",
+  };
+  return Object.keys(obj).includes(command);
 };
 
 export const isValidCommandWithGroups = (

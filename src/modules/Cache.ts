@@ -1,4 +1,5 @@
 import { CacheData, CurrentData } from "../interfaces/CacheData";
+import { CommandWithNothing } from "../interfaces/SchemaTypes";
 import {
   CommandWithSubcommandGroups,
   CommandWithSubcommands,
@@ -147,18 +148,19 @@ export class Cache {
     };
   }
 
-  public updateCurrentEvent(event: Event, count: number): void {
+  public updateCurrentEvent(event: Event): void {
     if (this._latest.event) {
-      this._latest.event[event] = count;
+      this._latest.event[event]++;
       return;
     }
     this._latest.event = {
       ...DefaultEvent,
-      [event]: count,
+      [event]: 1,
       timestamp: new Date(),
     };
   }
 
+  public updateCurrentCommand(command: CommandWithNothing): boolean;
   public updateCurrentCommand(
     command: CommandWithSubcommands,
     subcommand: string
@@ -169,8 +171,11 @@ export class Cache {
     subcommand: string
   ): boolean;
   public updateCurrentCommand(
-    command: CommandWithSubcommandGroups | CommandWithSubcommands,
-    subcommandOrGroup: SubcommandGroup | string,
+    command:
+      | CommandWithSubcommandGroups
+      | CommandWithSubcommands
+      | CommandWithNothing,
+    subcommandOrGroup?: SubcommandGroup | string,
     subcommand?: string
   ) {
     if (!this._latest.command) {
@@ -178,6 +183,13 @@ export class Cache {
         ...DefaultCommand,
         timestamp: new Date(),
       };
+    }
+    if (command && !subcommandOrGroup && !subcommand) {
+      if (command !== "optout") {
+        return false;
+      }
+      this._latest.command[command]++;
+      return true;
     }
     if (subcommandOrGroup && subcommand) {
       if (
@@ -190,14 +202,17 @@ export class Cache {
       this._latest.command[command][subcommandOrGroup][subcommand]++;
       return true;
     }
-    if (
-      !isValidCommandWithSubcommands(command) ||
-      !isValidSubcommand(subcommandOrGroup, command)
-    ) {
-      return false;
+    if (command && subcommandOrGroup) {
+      if (
+        !isValidCommandWithSubcommands(command) ||
+        !isValidSubcommand(subcommandOrGroup, command)
+      ) {
+        return false;
+      }
+      this._latest.command[command][subcommandOrGroup]++;
+      return true;
     }
-    this._latest.command[command][subcommandOrGroup]++;
-    return true;
+    return false;
   }
 
   public bustLatestCache(): CurrentData {
