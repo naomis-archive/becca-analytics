@@ -108,13 +108,13 @@ type configSubcommands {
 }
 
 type currencySubcommands {
-  daily  Int @default(0)
-  weekly Int @default(0)
-  claim  Int @default(0)
-  about  Int @default(0)
-  slots  Int @default(0)
-  21     Int @default(0)
-  guess  Int @default(0)
+  daily     Int @default(0)
+  weekly    Int @default(0)
+  claim     Int @default(0)
+  about     Int @default(0)
+  slots     Int @default(0)
+  twentyone Int @default(0)
+  guess     Int @default(0)
 }
 
 type emoteSubcommands {

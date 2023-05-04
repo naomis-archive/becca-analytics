@@ -110,7 +110,7 @@ export const DefaultCommand: Omit<commands, "id" | "timestamp"> = {
     claim: 0,
     about: 0,
     slots: 0,
-    "21": 0,
+    twentyone: 0,
     guess: 0,
   },
   emote: {
