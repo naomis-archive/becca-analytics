@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-typescript-template",
+  "name": "analytics",
   "version": "0.0.0",
-  "description": "A template for my nodejs projects",
+  "description": "Analytics API for Becca's discord bot",
   "main": "prod/index.js",
   "scripts": {
     "postinstall": "prisma generate",
@@ -12,25 +12,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/naomi-lgbt/nodejs-typescript-template.git"
+    "url": "git+ssh://git@github.com/beccalyria/analytics.git"
   },
   "keywords": [
-    "template",
+    "discordjs",
     "typescript",
-    "eslint",
-    "nodejs",
-    "prettier"
+    "prisma",
+    "analytics"
   ],
   "author": "Naomi Carrigan",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/naomi-lgbt/nodejs-typescript-template/issues"
+    "url": "https://github.com/beccalyria/analytics/issues"
   },
-  "homepage": "https://github.com/naomi-lgbt/nodejs-typescript-template#readme",
+  "homepage": "https://github.com/beccalyria/analytics#readme",
   "dependencies": {
-    "@prisma/client": "^4.13.0",
+    "@prisma/client": "4.13.0",
     "dotenv": "16.0.3",
-    "prisma": "^4.13.0",
+    "prisma": "4.13.0",
     "winston": "3.8.2"
   },
   "devDependencies": {
