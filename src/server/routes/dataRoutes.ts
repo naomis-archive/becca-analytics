@@ -11,6 +11,11 @@ import {
   isValidSubcommandGroup,
   isValidSubcommandInGroup,
 } from "../../utils/typeGuards";
+import { CommandSchema } from "../schemas/CommandSchema";
+import { ErrorSchema } from "../schemas/ErrorSchema";
+import { EventSchema } from "../schemas/EventSchema";
+import { GuildSchema } from "../schemas/GuildSchema";
+import { MemberSchema } from "../schemas/MemberSchema";
 
 /**
  * Handles updating the number of guilds.
@@ -19,12 +24,13 @@ import {
  * @param {object} param1 Options object.
  * @param {Client} param1.client The client.
  */
-export const guildRoute = (
+export const guildRoute = async (
   app: FastifyInstance,
   { client }: { client: Client }
 ) => {
   app.post(
     "/guilds",
+    { schema: GuildSchema },
     (req: FastifyRequest<{ Body: { count: number } }>, res) => {
       if (req.headers.authorization !== process.env.ENDPOINT_AUTH) {
         res.status(401).send({
@@ -57,12 +63,13 @@ export const guildRoute = (
  * @param {object} param1 Options object.
  * @param {Client} param1.client The client.
  */
-export const memberRoute = (
+export const memberRoute = async (
   app: FastifyInstance,
   { client }: { client: Client }
 ) => {
   app.post(
     "/members",
+    { schema: MemberSchema },
     (req: FastifyRequest<{ Body: { count: number } }>, res) => {
       if (req.headers.authorization !== process.env.ENDPOINT_AUTH) {
         res.status(401).send({
@@ -95,12 +102,13 @@ export const memberRoute = (
  * @param {object} param1 Options object.
  * @param {Client} param1.client The client.
  */
-export const errorRoute = (
+export const errorRoute = async (
   app: FastifyInstance,
   { client }: { client: Client }
 ) => {
   app.post(
     "/errors",
+    { schema: ErrorSchema },
     (req: FastifyRequest<{ Body: { handled: boolean } }>, res) => {
       if (req.headers.authorization !== process.env.ENDPOINT_AUTH) {
         res.status(401).send({
@@ -133,12 +141,13 @@ export const errorRoute = (
  * @param {object} param1 Options object.
  * @param {Client} param1.client The client.
  */
-export const eventRoute = (
+export const eventRoute = async (
   app: FastifyInstance,
   { client }: { client: Client }
 ) => {
   app.post(
     "/events",
+    { schema: EventSchema },
     (req: FastifyRequest<{ Body: { event: string } }>, res) => {
       if (req.headers.authorization !== process.env.ENDPOINT_AUTH) {
         res.status(401).send({
@@ -178,12 +187,15 @@ export const eventRoute = (
  * @param {object} param1 Options object.
  * @param {Client} param1.client The client.
  */
-export const commandRoute = (
+export const commandRoute = async (
   app: FastifyInstance,
   { client }: { client: Client }
 ) => {
   app.post(
     "/commands",
+    {
+      schema: CommandSchema,
+    },
     (
       req: FastifyRequest<{
         Body: {
