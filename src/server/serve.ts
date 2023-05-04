@@ -5,6 +5,7 @@ import Fastify from "fastify";
 import { Client } from "../interfaces/Client";
 import { generateServerConfig } from "../utils/generateServerConfig";
 
+import { dataRoute } from "./routes/consumeRoutes";
 import {
   commandRoute,
   errorRoute,
@@ -12,8 +13,6 @@ import {
   guildRoute,
   memberRoute,
 } from "./routes/dataRoutes";
-import { DataSchema } from "./schemas/DataSchema";
-import { dataRoute } from "./routes/consumeRoutes";
 
 /**
  * Instantiates the Fastify web server.
