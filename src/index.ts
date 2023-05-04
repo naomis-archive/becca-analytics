@@ -1,9 +1,11 @@
 import { PrismaClient, commands } from "@prisma/client";
+import { scheduleJob } from "node-schedule";
 
 import { Client } from "./interfaces/Client";
 import { Cache } from "./modules/Cache";
 import { serve } from "./server/serve";
 import { logHandler } from "./utils/logHandler";
+import { updateDatabase } from "./utils/updateDatabase";
 
 (async () => {
   logHandler.log("info", "Starting up...");
@@ -30,6 +32,13 @@ import { logHandler } from "./utils/logHandler";
       members,
     }),
   };
+
+  logHandler.log("info", "Scheduling database updates...");
+
+  // every day at noon
+  scheduleJob("0 0 12 * * *", async () => {
+    await updateDatabase(client);
+  });
 
   logHandler.log("info", "Starting server...");
   await serve(client);

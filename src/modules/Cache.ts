@@ -7,7 +7,10 @@ import {
   SubcommandGroup,
 } from "../interfaces/SchemaTypes";
 import { DefaultCommand } from "../statics/DefaultCommand";
+import { DefaultError } from "../statics/DefaultError";
 import { DefaultEvent } from "../statics/DefaultEvent";
+import { DefaultGuild } from "../statics/DefaultGuild";
+import { DefaultMember } from "../statics/DefaultMember";
 import {
   isValidCommandWithGroups,
   isValidCommandWithSubcommands,
@@ -37,12 +40,36 @@ export class Cache {
       events: init?.events || [],
       commands: init?.commands || [],
     };
-    this._latest = {
-      guild: null,
-      member: null,
-      error: null,
-      event: null,
-      command: null,
+    this._latest = this.generateLatest();
+  }
+
+  /**
+   * Resets the latest cache.
+   *
+   * @returns {CurrentData} The latest cache.
+   */
+  private generateLatest(): CurrentData {
+    return {
+      guild: {
+        ...DefaultGuild,
+        timestamp: new Date(),
+      },
+      member: {
+        ...DefaultMember,
+        timestamp: new Date(),
+      },
+      error: {
+        ...DefaultError,
+        timestamp: new Date(),
+      },
+      event: {
+        ...DefaultEvent,
+        timestamp: new Date(),
+      },
+      command: {
+        ...DefaultCommand,
+        timestamp: new Date(),
+      },
     };
   }
 
@@ -281,11 +308,12 @@ export class Cache {
    */
   public bustLatestCache(): CurrentData {
     const latest = this._latest;
-    this._latest.guild = null;
-    this._latest.member = null;
-    this._latest.error = null;
-    this._latest.event = null;
-    this._latest.command = null;
+    const { guild, member, error, event, command } = this.generateLatest();
+    this._latest.guild = guild;
+    this._latest.member = member;
+    this._latest.error = error;
+    this._latest.event = event;
+    this._latest.command = command;
     return latest;
   }
 }

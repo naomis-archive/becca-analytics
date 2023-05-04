@@ -9,9 +9,9 @@ export interface CacheData {
 }
 
 export interface CurrentData {
-  guild: Omit<guilds, "id"> | null;
-  member: Omit<members, "id"> | null;
-  error: Omit<errors, "id"> | null;
-  event: Omit<events, "id"> | null;
-  command: Omit<commands, "id"> | null;
+  guild: Omit<guilds, "id">;
+  member: Omit<members, "id">;
+  error: Omit<errors, "id">;
+  event: Omit<events, "id">;
+  command: Omit<commands, "id">;
 }
