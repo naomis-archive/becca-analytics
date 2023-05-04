@@ -1,0 +1,292 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGO_URL")
+}
+
+type commandUse {
+  timestamp DateTime @db.Date
+  uses      Int      @default(0)
+}
+
+type automodSubcommandGroups {
+  set   automodSubcommands
+  reset automodSubcommands
+  view  automodSubcommands
+}
+
+type configSubcommandGroups {
+  set   configSubcommands
+  reset configSubcommands
+  view  configSubcommands
+}
+
+type levelsSubcommandGroups {
+  set   levelsSubcommands
+  reset levelsSubcommands
+  view  levelsSubcommands
+}
+
+type logSubcommandGroups {
+  set   logSubcommands
+  reset logSubcommands
+  view  logSubcommands
+}
+
+type welcomeSubcommandGroups {
+  set   welcomeSubcommands
+  reset welcomeSubcommands
+  view  welcomeSubcommands
+}
+
+type automodSubcommands {
+  automod_channels    commandUse
+  no_automod_channels commandUse
+  automod_roles       commandUse
+  allowed_links       commandUse
+  link_message        commandUse
+  profanity_message   commandUse
+  antiphish           commandUse
+  links               commandUse
+  profanity           commandUse
+}
+
+type beccaSubcommands {
+  ping        commandUse
+  help        commandUse
+  about       commandUse
+  invite      commandUse
+  art         commandUse
+  donate      commandUse
+  uptime      commandUse
+  profile     commandUse
+  updates     commandUse
+  stats       commandUse
+  emote       commandUse
+  adventure   commandUse
+  privacy     commandUse
+  contact     commandUse
+  translators commandUse
+  feedback    commandUse
+}
+
+type codeSubcommands {
+  caniuse commandUse
+  colour  commandUse
+  http    commandUse
+}
+
+type communitySubcommands {
+  level      commandUse
+  motivation commandUse
+  schedule   commandUse
+  star       commandUse
+  starcount  commandUse
+  topic      commandUse
+  userinfo   commandUse
+  server     commandUse
+  suggest    commandUse
+  poll       commandUse
+  ticket     commandUse
+}
+
+type configSubcommands {
+  suggestion_channel  commandUse
+  hearts              commandUse
+  blocked             commandUse
+  appeal_link         commandUse
+  sass_mode           commandUse
+  emote_channels      commandUse
+  report_channel      commandUse
+  ticket_category     commandUse
+  ticket_log_channel  commandUse
+  ticket_role         commandUse
+  starboard_emote     commandUse
+  starboard_channel   commandUse
+  starboard_threshold commandUse
+}
+
+type currencySubcommands {
+  daily  commandUse
+  weekly commandUse
+  claim  commandUse
+  about  commandUse
+  slots  commandUse
+  21     commandUse
+  guess  commandUse
+}
+
+type emoteSubcommands {
+  use  commandUse
+  view commandUse
+}
+
+type gamesSubcommands {
+  fact   commandUse
+  mtg    commandUse
+  sus    commandUse
+  trivia commandUse
+  slime  commandUse
+}
+
+type levelsSubcommands {
+  toggle        commandUse
+  level_channel commandUse
+  level_roles   commandUse
+  level_style   commandUse
+  level_message commandUse
+  role_message  commandUse
+  initial_xp    commandUse
+  level_ignore  commandUse
+  level_decay   commandUse
+}
+
+type logSubcommands {
+  message_events    commandUse
+  voice_events      commandUse
+  thread_events     commandUse
+  member_events     commandUse
+  moderation_events commandUse
+}
+
+type manageSubcommands {
+  resetlevels commandUse
+  resetstars  commandUse
+  suggestion  commandUse
+  xpmodify    commandUse
+}
+
+type miscSubcommands {
+  space       commandUse
+  username    commandUse
+  xkcd        commandUse
+  permissions commandUse
+  levelscale  commandUse
+  language    commandUse
+}
+
+type modSubcommnands {
+  warn    commandUse
+  mute    commandUse
+  unmute  commandUse
+  kick    commandUse
+  ban     commandUse
+  history commandUse
+  unban   commandUse
+}
+
+type postSubcommands {
+  create commandUse
+  edit   commandUse
+  delete commandUse
+}
+
+type reactionRoleSubcommands {
+  create commandUse
+  add    commandUse
+  remove commandUse
+}
+
+type triggersSubcommands {
+  add    commandUse
+  remove commandUse
+  view   commandUse
+}
+
+type userconfigSubcommands {
+  view      commandUse
+  levelcard commandUse
+}
+
+type welcomeSubcommands {
+  welcome_channel commandUse
+  depart_channel  commandUse
+  custom_welcome  commandUse
+  leave_message   commandUse
+  join_role       commandUse
+  welcome_style   commandUse
+}
+
+model commands {
+  id           String                  @id @default(auto()) @map("_id") @db.ObjectId
+  timestamp    DateTime                @db.Date
+  automod      automodSubcommandGroups
+  becca        beccaSubcommands
+  code         codeSubcommands
+  community    communitySubcommands
+  config       configSubcommandGroups
+  currency     currencySubcommands
+  emote        emoteSubcommands
+  games        gamesSubcommands
+  levels       levelsSubcommandGroups
+  log          logSubcommandGroups
+  manage       manageSubcommands
+  misc         miscSubcommands
+  mod          modSubcommnands
+  optout       commandUse
+  post         postSubcommands
+  reactionRole reactionRoleSubcommands
+  triggers     triggersSubcommands
+  userconfig   userconfigSubcommands
+
+  @@unique([timestamp], map: "timestamp_1")
+}
+
+model guilds {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  timestamp DateTime @db.Date
+  count     Int      @default(0)
+
+  @@unique([timestamp], map: "timestamp_1")
+}
+
+model members {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  timestamp DateTime @db.Date
+  count     Int      @default(0)
+
+  @@unique([timestamp], map: "timestamp_1")
+}
+
+model errors {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  timestamp DateTime @db.Date
+  handled   Int      @default(0)
+  unhandled Int      @default(0)
+
+  @@unique([timestamp], map: "timestamp_1")
+}
+
+model events {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  timestamp         DateTime @db.Date
+  automodAction     Int      @default(0)
+  clientDisconnect  Int      @default(0)
+  clientReady       Int      @default(0)
+  guildAuditLog     Int      @default(0)
+  guildCreate       Int      @default(0)
+  guildDelete       Int      @default(0)
+  interactionCreate Int      @default(0)
+  memberAdd         Int      @default(0)
+  memberRemove      Int      @default(0)
+  memberUpdate      Int      @default(0)
+  messageCreate     Int      @default(0)
+  messageDelete     Int      @default(0)
+  messageUpdate     Int      @default(0)
+  reactionAdd       Int      @default(0)
+  shardError        Int      @default(0)
+  shardReady        Int      @default(0)
+  threadCreate      Int      @default(0)
+  threadDelete      Int      @default(0)
+  threadUpdate      Int      @default(0)
+  userUpdate        Int      @default(0)
+  voiceStateUpdate  Int      @default(0)
+
+  @@unique([timestamp], map: "timestamp_1")
+}
