@@ -1,17 +1,45 @@
+import { PrismaClient, commands } from "@prisma/client";
+import { scheduleJob } from "node-schedule";
+
+import { Client } from "./interfaces/Client";
+import { Cache } from "./modules/Cache";
+import { serve } from "./server/serve";
 import { logHandler } from "./utils/logHandler";
+import { updateDatabase } from "./utils/updateDatabase";
 
-/**
- * The linter will expect JSDoc declarations for all exported functions.
- *
- * @param {string} name Variables should be typed, and full sentences are expected.
- * @returns {string} The return type should be specified.
- */
-const main = (name: string): string => {
-  const string = `Hello ${name}!`;
-  logHandler.log("info", string);
-  return string;
-};
+(async () => {
+  logHandler.log("info", "Starting up...");
+  const db = new PrismaClient();
+  await db.$connect();
+  logHandler.log("info", "Connected to database.");
 
-main("Naomi");
+  const errors = await db.errors.findMany();
+  const events = await db.events.findMany();
+  // const commands = await db.commands.findMany();
+  const command: commands[] = [];
+  const guilds = await db.guilds.findMany();
+  const members = await db.members.findMany();
 
-export default main;
+  logHandler.log("info", "Cached data.");
+
+  const client: Client = {
+    db: new PrismaClient(),
+    cache: new Cache({
+      errors,
+      events,
+      commands: command,
+      guilds,
+      members,
+    }),
+  };
+
+  logHandler.log("info", "Scheduling database updates...");
+
+  // every day at noon
+  scheduleJob("0 0 12 * * *", async () => {
+    await updateDatabase(client);
+  });
+
+  logHandler.log("info", "Starting server...");
+  await serve(client);
+})();

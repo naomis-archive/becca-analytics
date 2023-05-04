@@ -1,9 +1,10 @@
 {
-  "name": "nodejs-typescript-template",
+  "name": "analytics",
   "version": "0.0.0",
-  "description": "A template for my nodejs projects",
+  "description": "Analytics API for Becca's discord bot",
   "main": "prod/index.js",
   "scripts": {
+    "postinstall": "prisma generate",
     "build": "tsc",
     "lint": "eslint src test --max-warnings 0",
     "start": "node -r dotenv/config prod/index.js",
@@ -11,32 +12,38 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/naomi-lgbt/nodejs-typescript-template.git"
+    "url": "git+ssh://git@github.com/beccalyria/analytics.git"
   },
   "keywords": [
-    "template",
+    "discordjs",
     "typescript",
-    "eslint",
-    "nodejs",
-    "prettier"
+    "prisma",
+    "analytics"
   ],
   "author": "Naomi Carrigan",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/naomi-lgbt/nodejs-typescript-template/issues"
+    "url": "https://github.com/beccalyria/analytics/issues"
   },
-  "homepage": "https://github.com/naomi-lgbt/nodejs-typescript-template#readme",
+  "homepage": "https://github.com/beccalyria/analytics#readme",
   "dependencies": {
+    "@prisma/client": "4.13.0",
     "dotenv": "16.0.3",
+    "fastify": "4.17.0",
+    "node-schedule": "2.1.1",
+    "prisma": "4.13.0",
     "winston": "3.8.2"
   },
   "devDependencies": {
+    "@fastify/swagger": "8.3.1",
+    "@fastify/swagger-ui": "1.8.1",
     "@nhcarrigan/eslint-config": "1.1.2",
     "@nhcarrigan/prettier-config": "1.0.1",
     "@nhcarrigan/typescript-config": "1.0.1",
     "@types/chai": "4.3.5",
     "@types/mocha": "10.0.1",
     "@types/node": "18.16.3",
+    "@types/node-schedule": "2.1.0",
     "chai": "4.3.7",
     "eslint": "8.39.0",
     "mocha": "10.2.0",

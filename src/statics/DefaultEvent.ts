@@ -1,0 +1,25 @@
+import { events } from "@prisma/client";
+
+export const DefaultEvent: Omit<events, "id" | "timestamp"> = {
+  automodAction: 0,
+  clientDisconnect: 0,
+  clientReady: 0,
+  guildAuditLog: 0,
+  guildCreate: 0,
+  guildDelete: 0,
+  interactionCreate: 0,
+  memberAdd: 0,
+  memberRemove: 0,
+  memberUpdate: 0,
+  messageCreate: 0,
+  messageDelete: 0,
+  messageUpdate: 0,
+  reactionAdd: 0,
+  shardError: 0,
+  shardReady: 0,
+  threadCreate: 0,
+  threadDelete: 0,
+  threadUpdate: 0,
+  userUpdate: 0,
+  voiceStateUpdate: 0,
+};
