@@ -11,6 +11,11 @@ import {
   memberRoute,
 } from "./routes/dataRoutes";
 
+/**
+ * Instantiates the Fastify web server.
+ *
+ * @param {Client} client The client.
+ */
 export const serve = async (client: Client) => {
   const config = await generateServerConfig();
   const app = Fastify(config);

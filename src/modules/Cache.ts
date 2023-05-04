@@ -1,6 +1,6 @@
 import { CacheData, CurrentData } from "../interfaces/CacheData";
-import { CommandWithNothing } from "../interfaces/SchemaTypes";
 import {
+  CommandWithNothing,
   CommandWithSubcommandGroups,
   CommandWithSubcommands,
   Event,
@@ -114,6 +114,12 @@ export class Cache {
     this._cache.commands.push(command);
   }
 
+  /**
+   * Updates the current guild record with the new count.
+   *
+   * @param {number} count The current count.
+   * @public
+   */
   public updateCurrentGuild(count: number): void {
     if (this._latest.guild) {
       this._latest.guild.count = count;
@@ -125,6 +131,12 @@ export class Cache {
     };
   }
 
+  /**
+   * Updates the current member record with the new count.
+   *
+   * @param {number} count The current count.
+   * @public
+   */
   public updateCurrentMember(count: number): void {
     if (this._latest.member) {
       this._latest.member.count = count;
@@ -136,6 +148,13 @@ export class Cache {
     };
   }
 
+  /**
+   * Increments the handled or unhandled property on the current
+   * error record.
+   *
+   * @param {number} handled Whether the error was handled.
+   * @public
+   */
   public updateCurrentError(handled: boolean): void {
     if (this._latest.error) {
       handled ? this._latest.error.handled++ : this._latest.error.unhandled++;
@@ -148,6 +167,12 @@ export class Cache {
     };
   }
 
+  /**
+   * Increments the event on the current event record.
+   *
+   * @param {Event} event The event to increment.
+   * @public
+   */
   public updateCurrentEvent(event: Event): void {
     if (this._latest.event) {
       this._latest.event[event]++;
@@ -160,16 +185,49 @@ export class Cache {
     };
   }
 
+  /**
+   * Updates the command record with a new command use.
+   *
+   * @param {CommandWithNothing} command The command to update.
+   * @returns {boolean} Whether the command was updated.
+   * @public
+   */
   public updateCurrentCommand(command: CommandWithNothing): boolean;
+  /**
+   * Updates the command record with a new command use.
+   *
+   * @param {CommandWithSubcommands} command The command to update.
+   * @param {string} subcommand The subcommand to update.
+   * @returns {boolean} Whether the command was updated.
+   * @public
+   */
   public updateCurrentCommand(
     command: CommandWithSubcommands,
     subcommand: string
   ): boolean;
+  /**
+   * Updates the command record with a new command use.
+   *
+   * @param {CommandWithSubcommandGroups} command The command to update.
+   * @param {SubcommandGroup} subcommandGroup The subcommand group to update.
+   * @param {string} subcommand The subcommand to update.
+   * @returns {boolean} Whether the command was updated.
+   * @public
+   */
   public updateCurrentCommand(
     command: CommandWithSubcommandGroups,
     subcommandGroup: SubcommandGroup,
     subcommand: string
   ): boolean;
+  /**
+   * Updates the command record with a new command use.
+   *
+   * @param {CommandWithNothing | CommandWithSubcommandGroups | CommandWithSubcommands} command The command to update.
+   * @param {SubcommandGroup | string} subcommandOrGroup The subcommand or subcommand group to update.
+   * @param {string} subcommand The subcommand to update, if previous parameter is the subcommand group.
+   * @returns {boolean} Whether the command was updated.
+   * @public
+   */
   public updateCurrentCommand(
     command:
       | CommandWithSubcommandGroups
@@ -215,6 +273,12 @@ export class Cache {
     return false;
   }
 
+  /**
+   * Clears the current latest cache, preparing for a new set of data.
+   *
+   * @returns {CurrentData} The current cache to insert into the database.
+   * @public
+   */
   public bustLatestCache(): CurrentData {
     const latest = this._latest;
     this._latest.guild = null;

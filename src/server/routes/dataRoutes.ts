@@ -12,7 +12,14 @@ import {
   isValidSubcommandInGroup,
 } from "../../utils/typeGuards";
 
-export const guildRoute = async (
+/**
+ * Handles updating the number of guilds.
+ *
+ * @param {FastifyInstance} app The Fastify app.
+ * @param {object} param1 Options object.
+ * @param {Client} param1.client The client.
+ */
+export const guildRoute = (
   app: FastifyInstance,
   { client }: { client: Client }
 ) => {
@@ -43,7 +50,14 @@ export const guildRoute = async (
   );
 };
 
-export const memberRoute = async (
+/**
+ * Handles updating the number of members.
+ *
+ * @param {FastifyInstance} app The Fastify app.
+ * @param {object} param1 Options object.
+ * @param {Client} param1.client The client.
+ */
+export const memberRoute = (
   app: FastifyInstance,
   { client }: { client: Client }
 ) => {
@@ -74,7 +88,14 @@ export const memberRoute = async (
   );
 };
 
-export const errorRoute = async (
+/**
+ * Handles updating the number of errors.
+ *
+ * @param {FastifyInstance} app The Fastify app.
+ * @param {object} param1 Options object.
+ * @param {Client} param1.client The client.
+ */
+export const errorRoute = (
   app: FastifyInstance,
   { client }: { client: Client }
 ) => {
@@ -105,7 +126,14 @@ export const errorRoute = async (
   );
 };
 
-export const eventRoute = async (
+/**
+ * Handles updating the number of events.
+ *
+ * @param {FastifyInstance} app The Fastify app.
+ * @param {object} param1 Options object.
+ * @param {Client} param1.client The client.
+ */
+export const eventRoute = (
   app: FastifyInstance,
   { client }: { client: Client }
 ) => {
@@ -143,7 +171,14 @@ export const eventRoute = async (
   );
 };
 
-export const commandRoute = async (
+/**
+ * Handles updating the number of command uses.
+ *
+ * @param {FastifyInstance} app The Fastify app.
+ * @param {object} param1 Options object.
+ * @param {Client} param1.client The client.
+ */
+export const commandRoute = (
   app: FastifyInstance,
   { client }: { client: Client }
 ) => {

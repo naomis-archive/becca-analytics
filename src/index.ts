@@ -2,8 +2,8 @@ import { PrismaClient, commands } from "@prisma/client";
 
 import { Client } from "./interfaces/Client";
 import { Cache } from "./modules/Cache";
-import { logHandler } from "./utils/logHandler";
 import { serve } from "./server/serve";
+import { logHandler } from "./utils/logHandler";
 
 (async () => {
   logHandler.log("info", "Starting up...");
