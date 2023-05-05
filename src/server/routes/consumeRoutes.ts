@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
 
 import { Client } from "../../interfaces/Client";
+import { errorHandler } from "../../utils/errorHandler";
 import { DataSchema } from "../schemas/DataSchema";
 
 /**
@@ -14,7 +15,11 @@ export const dataRoute = async (
   app: FastifyInstance,
   { client }: { client: Client }
 ) => {
-  app.get("/data", { schema: DataSchema }, (req, res) => {
-    res.send(client.cache.cache);
-  });
+  try {
+    app.get("/data", { schema: DataSchema }, (req, res) => {
+      res.send(client.cache.cache);
+    });
+  } catch (err) {
+    await errorHandler("data route", err);
+  }
 };
