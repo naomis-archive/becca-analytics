@@ -98,6 +98,7 @@ export const DefaultCommand: Omit<commands, "id" | "timestamp"> = {
     suggest: 0,
     poll: 0,
     ticket: 0,
+    leaderboard: 0,
   },
   config: {
     set: configSubcommands,
@@ -112,6 +113,7 @@ export const DefaultCommand: Omit<commands, "id" | "timestamp"> = {
     slots: 0,
     twentyone: 0,
     guess: 0,
+    view: 0,
   },
   emote: {
     use: 0,

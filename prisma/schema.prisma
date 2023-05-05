@@ -78,17 +78,18 @@ type codeSubcommands {
 }
 
 type communitySubcommands {
-  level      Int @default(0)
-  motivation Int @default(0)
-  schedule   Int @default(0)
-  star       Int @default(0)
-  starcount  Int @default(0)
-  topic      Int @default(0)
-  userinfo   Int @default(0)
-  server     Int @default(0)
-  suggest    Int @default(0)
-  poll       Int @default(0)
-  ticket     Int @default(0)
+  leaderboard Int @default(0)
+  level       Int @default(0)
+  motivation  Int @default(0)
+  schedule    Int @default(0)
+  star        Int @default(0)
+  starcount   Int @default(0)
+  topic       Int @default(0)
+  userinfo    Int @default(0)
+  server      Int @default(0)
+  suggest     Int @default(0)
+  poll        Int @default(0)
+  ticket      Int @default(0)
 }
 
 type configSubcommands {
@@ -115,6 +116,7 @@ type currencySubcommands {
   slots     Int @default(0)
   twentyone Int @default(0)
   guess     Int @default(0)
+  view      Int @default(0)
 }
 
 type emoteSubcommands {
