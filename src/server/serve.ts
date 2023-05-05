@@ -6,7 +6,7 @@ import { Client } from "../interfaces/Client";
 import { errorHandler } from "../utils/errorHandler";
 import { generateServerConfig } from "../utils/generateServerConfig";
 
-import { dataRoute } from "./routes/consumeRoutes";
+import { dataRoute, latestRoute } from "./routes/consumeRoutes";
 import {
   commandRoute,
   errorRoute,
@@ -36,10 +36,7 @@ export const serve = async (client: Client) => {
           schemes: ["http"],
           consumes: ["application/json"],
           produces: ["application/json"],
-          tags: [
-            { name: "data", description: "Data related end-points" },
-            { name: "consume", description: "Endpoints for consuming data" },
-          ],
+          tags: [{ name: "data", description: "Data related end-points" }],
         },
       });
       app.register(fastifySwaggerUi);
@@ -55,6 +52,7 @@ export const serve = async (client: Client) => {
     app.register(commandRoute, { client });
     app.register(errorRoute, { client });
     app.register(dataRoute, { client });
+    app.register(latestRoute, { client });
 
     await app.ready();
     app.listen({ port: 2000 });
