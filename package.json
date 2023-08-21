@@ -10,6 +10,10 @@
     "start": "node -r dotenv/config prod/index.js",
     "test": "ts-mocha -u tdd  test/**/*.spec.ts --recursive --exit --timeout 10000"
   },
+  "engines": {
+    "node": "18",
+    "pnpm": "8"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/beccalyria/analytics.git"
