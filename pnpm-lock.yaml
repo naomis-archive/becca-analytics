@@ -47,8 +47,8 @@ devDependencies:
     specifier: 10.0.1
     version: 10.0.1
   '@types/node':
-    specifier: 18.17.11
-    version: 18.17.11
+    specifier: 18.17.12
+    version: 18.17.12
   '@types/node-schedule':
     specifier: 2.1.0
     version: 2.1.0
@@ -334,11 +334,11 @@ packages:
   /@types/node-schedule@2.1.0:
     resolution: {integrity: sha512-NiTwl8YN3v/1YCKrDFSmCTkVxFDylueEqsOFdgF+vPsm+AlyJKGAo5yzX1FiOxPsZiN6/r8gJitYx2EaSuBmmg==}
     dependencies:
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
     dev: true
 
-  /@types/node@18.17.11:
-    resolution: {integrity: sha512-r3hjHPBu+3LzbGBa8DHnr/KAeTEEOrahkcL+cZc4MaBMTM+mk8LtXR+zw+nqfjuDZZzYTYgTcpHuP+BEQk069g==}
+  /@types/node@18.17.12:
+    resolution: {integrity: sha512-d6xjC9fJ/nSnfDeU0AMDsaJyb1iHsqCSOdi84w4u+SlN/UgQdY5tRhpMzaFYsI4mnpvgTivEaQd0yOUhAtOnEQ==}
     dev: true
 
   /@types/semver@7.5.0:
